@@ -2,7 +2,8 @@
 
 Basically a glorified spreadsheet to estimate future Algo governance earnings.
 This will help you roughly estimate your returns if your parcipate in governance.
-The Price, Committed, and APY fields are editable, as those are the variables that may change.
+
+Price, Committed, and APY fields are editable as those are the variables that may change.
 
 "Does your app track my balance?" - No. All calculations are done in Javascript, and never leave your browser.
 
