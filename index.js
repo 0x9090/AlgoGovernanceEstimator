@@ -1,30 +1,42 @@
-//document.getElementById("priceInput").addEventListener("keyup", refreshPrices);
-document.querySelectorAll("table td").forEach(e => e.addEventListener("keyup", refreshPrices));
+document.getElementById("priceInput").addEventListener("keyup",
+    function() { updateUSD(); });
+document.querySelectorAll("table td").forEach(e => e.addEventListener("keyup",
+    function(e) { refreshPrices(e); }));
 
-function refreshPrices() {
+function refreshPrices(event) {
+    let edited_row = event.target.parentElement.rowIndex;
     let price = parseFloat(document.getElementById("priceInput").value);
     let table = document.getElementById("tableData");
-    for (let i = 1; i < table.rows.length; i++) {
+    for (let i = edited_row; i < table.rows.length; i++) {
         // row iteration
         let row = table.rows[i];
-        console.log(row);
         let committed = parseFloat(row.cells[2].innerText);
         let apy = parseInt(row.cells[3].innerText);
         let rewards = parseFloat(((committed * (apy / 100)) / 4).toFixed(6));
         let balance = parseFloat((committed + rewards).toFixed(6));
         let usd_value = parseFloat(((committed + rewards) * price).toFixed(2));
         let formatted_usd_value = "$" + usd_value.toLocaleString("en-US");
-        row.cells[4].innerText = rewards;
-        row.cells[5].innerText = balance
+        row.cells[4].innerText = rewards.toString();
+        row.cells[5].innerText = balance.toString();
         row.cells[6].innerText = formatted_usd_value;
-        if (i >= table.rows.length) {
-            return;
-        }
-        console.log(i);
-        if (i !== row.rowIndex) {
+        if (i < (table.rows.length - 1)) {
             let next_row = table.rows[i + 1];
-            next_row.cells[2].innerText = balance;
+            next_row.cells[2].innerText = balance.toString();
         }
+    }
+}
+
+function updateUSD() {
+    let price = parseFloat(document.getElementById("priceInput").value);
+    let table = document.getElementById("tableData");
+    for (let i = 1; i < table.rows.length; i++) {
+        let row = table.rows[i];
+        let balance = parseFloat(row.cells[5]);
+        let usd_value = parseFloat((balance * price).toFixed(2));
+        if (isNaN(usd_value)) {
+            usd_value = 0;
+        }
+        row.cells[6].innerText = "$" + usd_value.toLocaleString("en-US");
     }
 }
 
@@ -32,7 +44,11 @@ function resetPrices() {
     let table = document.getElementById("tableData");
     for (let i = 1; i < table.rows.length; i++) {
         let row = table.rows[i];
-
+        row.cells[2].innerText = "0";
+        row.cells[3].innerText = "14";
+        row.cells[4].innerText = "0";
+        row.cells[5].innerText = "0";
+        row.cells[6].innerText = "$0";
     }
 }
 
