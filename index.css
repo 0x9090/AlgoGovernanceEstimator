@@ -3,7 +3,11 @@
 }
 #priceDiv {
     max-width: 200px;
+    padding-top: 20px;
+    padding-bottom: 10px;
 }
 #secondRow {
     padding-top: 10px;
 }
+table thead { background-color: white; }
+.grey { background-color: #E0E0E0 !important; }
