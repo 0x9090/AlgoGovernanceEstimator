@@ -5,9 +5,19 @@
     max-width: 200px;
     padding-top: 20px;
     padding-bottom: 10px;
+    float: left;
 }
 #secondRow {
     padding-top: 10px;
 }
+#thirdRow {
+    text-align: center;
+}
 table thead { background-color: white; }
 .grey { background-color: #E0E0E0 !important; }
+button {
+    background-color: #E0E0E0 !important;
+    color: black !important;
+    float: right;
+    margin-top: 20px;
+}

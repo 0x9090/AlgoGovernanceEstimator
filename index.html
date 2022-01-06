@@ -4,9 +4,12 @@
     <div class="col-2"></div>
     <div class="col-8">
       <h1>Algo Governance Estimator</h1>
-      <div class="input-group" id="priceDiv">
-        <span class="input-group-text">$</span>
-        <input type="text" class="form-control" placeholder="Algo Price" aria-label="Algo Price">
+      <div class="controls">
+        <div class="input-group" id="priceDiv">
+          <span class="input-group-text">$</span>
+          <input type="text" class="form-control" placeholder="Algo Price" aria-label="Algo Price">
+        </div>
+        <button class="btn btn-primary" type="submit" onsubmit="downloadCSV()" value="Download">Download CSV</button>
       </div>
     </div>
   </div>
@@ -82,6 +85,10 @@
         </tbody>
       </table>
     </div>
+  </div>
+  <div class="row" id="thirdRow">
+    <p>A project by Nops - <a href="https://github.com/0x9090/AlgoGovernanceEstimator">github.com/0x9090/AlgoGovernanceEstimator</a></p>
+    "
   </div>
 </div>
 
