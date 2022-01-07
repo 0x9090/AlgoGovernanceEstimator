@@ -8,13 +8,15 @@ function refreshPrices(event) {
     let price = parseFloat(document.getElementById("priceInput").value);
     let table = document.getElementById("tableData");
     for (let i = edited_row; i < table.rows.length; i++) {
-        // row iteration
         let row = table.rows[i];
         let committed = parseFloat(row.cells[2].innerText);
         let apy = parseInt(row.cells[3].innerText);
         let rewards = parseFloat(((committed * (apy / 100)) / 4).toFixed(6));
         let balance = parseFloat((committed + rewards).toFixed(6));
         let usd_value = parseFloat(((committed + rewards) * price).toFixed(2));
+        if (isNaN(usd_value)) {
+            usd_value = 0;
+        }
         let formatted_usd_value = "$" + usd_value.toLocaleString("en-US");
         row.cells[4].innerText = rewards.toString();
         row.cells[5].innerText = balance.toString();
@@ -31,8 +33,8 @@ function updateUSD() {
     let table = document.getElementById("tableData");
     for (let i = 1; i < table.rows.length; i++) {
         let row = table.rows[i];
-        let balance = parseFloat(row.cells[5]);
-        let usd_value = parseFloat((balance * price).toFixed(2));
+        let balance = parseFloat(row.cells[5].innerText);
+        let usd_value = (balance * price);
         if (isNaN(usd_value)) {
             usd_value = 0;
         }
@@ -41,6 +43,7 @@ function updateUSD() {
 }
 
 function resetPrices() {
+    document.getElementById("priceInput").value = "";
     let table = document.getElementById("tableData");
     for (let i = 1; i < table.rows.length; i++) {
         let row = table.rows[i];
@@ -53,14 +56,13 @@ function resetPrices() {
 }
 
 function downloadCSV() {
-    console.log("downloading CSV");
     let csv_data = [];
     let rows = document.getElementsByTagName("tr");
     for (let i = 0; i < rows.length; i++) {
         let columns = rows[i].querySelectorAll("td,th");
         let csvrow = [];
         for (let j = 0; j < columns.length; j++) {
-            csvrow.push(columns[j].innerHTML);
+            csvrow.push("\"" + columns[j].innerHTML + "\"");
         }
         csv_data.push(csvrow.join(","));
     }
