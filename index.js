@@ -10,7 +10,7 @@ function refreshPrices(event) {
     for (let i = edited_row; i < table.rows.length; i++) {
         let row = table.rows[i];
         let committed = parseFloat(row.cells[2].innerText);
-        let apy = parseInt(row.cells[3].innerText);
+        let apy = parseFloat(row.cells[3].innerText);
         let rewards = parseFloat(((committed * (apy / 100)) / 4).toFixed(6));
         let balance = parseFloat((committed + rewards).toFixed(6));
         let usd_value = parseFloat(((committed + rewards) * price).toFixed(2));
@@ -45,14 +45,27 @@ function updateUSD() {
 function resetPrices() {
     document.getElementById("priceInput").value = "";
     let table = document.getElementById("tableData");
-    for (let i = 1; i < table.rows.length; i++) {
+    setRow(1, "14.05");
+    setRow(2, "8.95");
+    for (let i = 3; i < table.rows.length; i++) {
         let row = table.rows[i];
-        row.cells[2].innerText = "0";
+        setRow(i, "9");
+        /*row.cells[2].innerText = "0";
         row.cells[3].innerText = "14";
         row.cells[4].innerText = "0";
         row.cells[5].innerText = "0";
-        row.cells[6].innerText = "$0";
+        row.cells[6].innerText = "$0";*/
     }
+}
+
+function setRow(row, price) {
+    let table = document.getElementById("tableData");
+    let rowObj = table.rows[row];
+    row.cells[2].innerText = "0";
+    row.cells[3].innerText = price;
+    row.cells[4].innerText = "0";
+    row.cells[5].innerText = "0";
+    row.cells[6].innerText = "$0";
 }
 
 function downloadCSV() {
