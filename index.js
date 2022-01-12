@@ -48,24 +48,18 @@ function resetPrices() {
     setRow(1, "14.05");
     setRow(2, "8.95");
     for (let i = 3; i < table.rows.length; i++) {
-        let row = table.rows[i];
         setRow(i, "9");
-        /*row.cells[2].innerText = "0";
-        row.cells[3].innerText = "14";
-        row.cells[4].innerText = "0";
-        row.cells[5].innerText = "0";
-        row.cells[6].innerText = "$0";*/
     }
 }
 
 function setRow(row, price) {
     let table = document.getElementById("tableData");
     let rowObj = table.rows[row];
-    row.cells[2].innerText = "0";
-    row.cells[3].innerText = price;
-    row.cells[4].innerText = "0";
-    row.cells[5].innerText = "0";
-    row.cells[6].innerText = "$0";
+    rowObj.cells[2].innerText = "0";
+    rowObj.cells[3].innerText = price;
+    rowObj.cells[4].innerText = "0";
+    rowObj.cells[5].innerText = "0";
+    rowObj.cells[6].innerText = "$0";
 }
 
 function downloadCSV() {
