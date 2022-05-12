@@ -47,9 +47,9 @@ function resetPrices() {
     let table = document.getElementById("tableData");
     setRow(1, "14.05");
     setRow(2, "10.02");
-    setRow(3, "7.14");
+    setRow(3, "7.26");
     for (let i = 4; i < table.rows.length; i++) {
-        setRow(i, "7");
+        setRow(i, "8");
     }
 }
 
