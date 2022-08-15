@@ -50,7 +50,7 @@ function resetPrices() {
     setRow(3, "7.96");
     setRow(4, "7.41");
     for (let i = 4; i < table.rows.length; i++) {
-        setRow(i, "8");
+        setRow(i, "7");
     }
 }
 
