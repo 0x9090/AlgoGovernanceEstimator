@@ -1,5 +1,4 @@
-document.getElementById("priceInput").addEventListener("keyup",
-    function() { updateUSD(); });
+document.getElementById("priceInput").addEventListener("keyup",function() { updateUSD(); });
 document.querySelectorAll("table td").forEach(e => e.addEventListener("keyup",
     function(e) { refreshPrices(e); }));
 
