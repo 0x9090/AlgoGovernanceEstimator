@@ -3,6 +3,8 @@ document.getElementById("priceInput").addEventListener("keyup",
 document.querySelectorAll("table td").forEach(e => e.addEventListener("keyup",
     function(e) { refreshPrices(e); }));
 
+let period = 0;
+
 function refreshPrices(event) {
     let edited_row = event.target.parentElement.rowIndex;
     let price = parseFloat(document.getElementById("priceInput").value);
@@ -51,12 +53,14 @@ function resetPrices() {
     setRow(4, "7.73");
     setRow(5, "7.5");
     setRow(6, "6.53");
-    for (let i = 7; i < table.rows.length; i++) { // Don't forget to update the starting index
+
+    for (let i = period + 1; i < table.rows.length; i++) { // Don't forget to update the starting index
         setRow(i, "7");
     }
 }
 
 function setRow(row, price) {
+    period++;
     let table = document.getElementById("tableData");
     let rowObj = table.rows[row];
     rowObj.cells[2].innerText = "0";
