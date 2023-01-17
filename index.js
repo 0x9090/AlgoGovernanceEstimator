@@ -54,7 +54,7 @@ function resetPrices() {
     setRow(5, "7.5");
     setRow(6, "6.53");
 
-    for (let i = period + 1; i < table.rows.length; i++) { // Don't forget to update the starting index
+    for (let i = (period + 1); i < table.rows.length; i++) { // Don't forget to update the starting index
         setRow(i, "7");
     }
 }
